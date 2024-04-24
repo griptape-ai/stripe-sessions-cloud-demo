@@ -1,0 +1,5 @@
+fastapi >= "0.110.1"
+uvicorn[standard] >= "0.29.0"
+stripe >= "9.2.0"
+git+https://github.com/griptape-ai/griptape.git@stripe-sessions#egg=griptape[all]
+git+https://github.com/griptape-ai/proxycurl-client-tool.git
