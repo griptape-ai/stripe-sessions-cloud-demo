@@ -1,4 +1,5 @@
 import os
+import sys
 from textwrap import dedent
 
 from griptape.config import StructureConfig, StructureGlobalDriversConfig
@@ -100,4 +101,5 @@ structure = Pipeline(
 )
 
 if __name__ == "__main__":
-    structure.run("collin@griptape.ai")
+    print("Running structure.py...")
+    structure.run(*sys.argv[1:])
