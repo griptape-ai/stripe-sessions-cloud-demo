@@ -84,8 +84,6 @@ structure = Pipeline(
                 TaskMemoryClient(off_prompt=False),
             ],
         ),
-        AudioGenerationTask(lambda task: task.parents[0].output),
-        CodeExecutionTask(run_fn=lambda task: play_audio(task.parents[0].output)),
         ToolTask(
             dedent(
                 """Send this info to Slack:
