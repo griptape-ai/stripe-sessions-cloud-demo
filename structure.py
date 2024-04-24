@@ -3,7 +3,10 @@ import sys
 from textwrap import dedent
 
 from griptape.config import StructureConfig, StructureGlobalDriversConfig
-from griptape.drivers import MarkdownifyWebScraperDriver
+from griptape.drivers import (
+    MarkdownifyWebScraperDriver,
+    GriptapeCloudEventListenerDriver,
+)
 from griptape.loaders import WebLoader
 from griptape.rules import Rule
 from griptape.structures import Pipeline
@@ -17,6 +20,9 @@ from griptape.drivers import (
 )
 from proxycurl_client import ProxycurlClient
 
+base_url = os.environ["GT_CLOUD_BASE_URL"]
+api_key = os.environ["GRIPTAPE_CLOUD_API_KEY"]
+event_driver = GriptapeCloudEventListenerDriver(base_url=base_url, api_key=api_key)
 
 structure = Pipeline(
     config=StructureConfig(
@@ -35,6 +41,7 @@ structure = Pipeline(
                 model="eleven_multilingual_v2",
                 voice="Rachel",
             ),
+            event_driver=event_driver,
         )
     ),
     tasks=[
