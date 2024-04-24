@@ -7,6 +7,7 @@ from griptape.drivers import (
     MarkdownifyWebScraperDriver,
     GriptapeCloudEventListenerDriver,
 )
+from griptape.events import EventListener
 from griptape.loaders import WebLoader
 from griptape.rules import Rule
 from griptape.structures import Pipeline
@@ -41,9 +42,9 @@ structure = Pipeline(
                 model="eleven_multilingual_v2",
                 voice="Rachel",
             ),
-            event_driver=event_driver,
         )
     ),
+    event_listeners=[EventListener(driver=event_driver)],
     tasks=[
         ToolkitTask(
             "Use this email address to scrape their company's website for their LinkedIn URL: {{ args[0] }}.",
